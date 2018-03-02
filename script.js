@@ -2,10 +2,10 @@ window.onload = () => {
     main = document.querySelector('main');
     header = document.querySelector('header');
     if (typeof sessionStorage.username != 'undefined') {
-        display('menu.html', header, getUsername);
-        display('profile.html', main, profile);        
-    } else {   
-        display('login.html', main);
+        display('menu.html', header, menuActions);
+        display('home.html', main);
+    } else {
+        display('login.html', main, login);
     }
 }
 
@@ -30,7 +30,8 @@ function setUsername(username) {
 function login(setUsername) {
     document.querySelector('form[name="login"]').onsubmit = function() {
         changeUsername(this[0].value);
-        display('menu.html', header);
+        display('menu.html', header, menuActions);
+        display('home.html', main);
         return false;
     }
 }
@@ -43,11 +44,27 @@ function profile() {
     document.querySelector('form input').value = sessionStorage.username;
     document.querySelector('form').onsubmit = function() {
         changeUsername(this[0].value);
-        getUsername();
+        menuActions();
         return false;
     }
 }
 
-function getUsername() {
-    document.querySelector('nav div:nth-child(2)').innerHTML = sessionStorage.username;
+function menuActions() {
+    document.querySelector('#home').onclick = () => {
+        display('home.html', main);
+    }
+    document.querySelector('#username').innerHTML = sessionStorage.username;
+    document.querySelector('#username').onclick =  () => {
+        display('profile.html', main, profile);
+    }
+    document.querySelector('#logout').onclick = logout;
+}
+
+function logout() {
+    sessionStorage.removeItem('username');
+    window.location = 'index.html';
+}
+
+function displayUsername() {
+    document.querySelector('#username').innerHTML = sessionStorage.username;    
 }
