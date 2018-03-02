@@ -2,9 +2,10 @@ window.onload = () => {
     main = document.querySelector('main');
     header = document.querySelector('header');
     if (typeof sessionStorage.username != 'undefined') {
-        display('menu.html', header);
-    } else {
-        display('login.html', main, login);
+        display('menu.html', header, getUsername);
+        display('profile.html', main, profile);        
+    } else {   
+        display('login.html', main);
     }
 }
 
@@ -36,4 +37,17 @@ function login(setUsername) {
 
 function changeUsername(value) {
     sessionStorage.setItem('username', value);
+}
+
+function profile() {
+    document.querySelector('form input').value = sessionStorage.username;
+    document.querySelector('form').onsubmit = function() {
+        changeUsername(this[0].value);
+        getUsername();
+        return false;
+    }
+}
+
+function getUsername() {
+    document.querySelector('nav div:nth-child(2)').innerHTML = sessionStorage.username;
 }
