@@ -26,4 +26,45 @@ body {
 header {
     height: 10vh;
     background-color: #B98EFF;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+legend {
+    width: 100%;
+    margin: 10px 0;
+}
+
+form[name="login"] {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form[name="login"] label {
+    width: 40%;
+    margin: 5px 0;
+}
+
+form[name="login"] input {
+    justify-self: flex-end;
+    width: 50%;
+    margin: 5px 0;
+}
+
+nav {
+    display: flex;
+    width: 20%;
+    padding: 0 15px;
+    margin-right: 5%;
+    justify-content: space-between;
+    color: white;
 }
