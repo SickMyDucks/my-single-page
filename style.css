@@ -85,3 +85,7 @@ nav div {
 nav div:hover {
     cursor: pointer;
 }
+
+.home h1 {
+    font-size: 3rem;
+}
